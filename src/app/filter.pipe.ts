@@ -5,8 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: any, filterString: string, propName: string): any {
+    if(value.length === 0) {
+      return value
+    }
+    for(const item of value) {
+      const resultArray = [];
+      if(item[propName] === filterString) {
+        resultArray.push(item)
+      }
+      return resultArray;
+    }
   }
 
 }
